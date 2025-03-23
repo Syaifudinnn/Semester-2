@@ -1,56 +1,59 @@
 import java.util.Scanner;
 
 public class DosenMain16 {
-    
+
     public static void main(String[] args) {
-        
-        //deklarasi inputan
+
+        // deklarasi inputan
         Scanner input = new Scanner(System.in);
 
-        //input banyak data
-        System.out.print("Masukkan banyak dosen : ");
-        int jumlah = input.nextInt();
-        input.nextLine();
+        // buat objek dari class SortDosen16
+        SortDosen16 list = new SortDosen16();
 
-        //buat objek
-        SortDosen16 list = new SortDosen16(jumlah);
-
-        //input data dosen
-        for (int i = 0; i < jumlah; i++) {
-            System.out.println("\nData Dosen ke-" + (i + 1));
-
-            System.out.print("Kode Dosen : ");
-            String kode = input.nextLine();
-
-            System.out.print("Nama Dosen : ");
-            String nama = input.nextLine();
-
-            System.out.print("Jenis Kelamin (L/P) : ");
-            boolean jenisKelamin = input.nextLine().equalsIgnoreCase("L");
-
-            System.out.print("Usia : ");
-            int usia = input.nextInt();
+        int pilihan;
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Tambah Data Dosen");
+            System.out.println("2. Tampil Data Dosen");
+            System.out.println("3. Urutkan Usia Ascending (Bubble Sort)");
+            System.out.println("4. Urutkan Usia Descending (Selection Sort)");
+            System.out.println("5. Keluar");
+            System.out.print("Pilih menu: ");
+            pilihan = input.nextInt();
             input.nextLine();
 
-            Dosen16 dosen = new Dosen16(kode, nama, jenisKelamin, usia);
-            list.tambah(dosen);
-        }
+            switch (pilihan) {
+                case 1:
+                    System.out.println("\n--- Tambah Data Dosen ---");
+                    list.tambah();
+                    break;
 
-        //output
-        System.out.println("\nData Dosen sebelum sorting : ");
-        list.tampil();
+                case 2:
+                    System.out.println("\n--- Tampil Data Dosen ---");
+                    list.tampil();
+                    break;
 
-        System.out.println("----------------------------------");
+                case 3:
+                    list.SortingASC();
+                    System.out.println("\n--- Data ASC ---");
+                    list.tampil();
+                    break;
 
-        System.out.println("\nData Dosen setelah sorting (asc) : ");
-        list.SortingASC();
-        list.tampil();
+                case 4:
+                    list.SortingDESC();
+                    System.out.println("\n--- Data DESC ---");
+                    list.tampil();
+                    break;
 
-        System.out.println("----------------------------------");
+                case 5:
+                    System.out.println("Keluar dari program.");
+                    break;
 
-        System.out.println("\nData Dosen setelah sorting (desc) : ");
-        list.SortingDESC();
-        list.tampil();
+                default:
+                    System.out.println("Pilihan tidak valid.");
+            }
+
+        } while (pilihan != 5);
 
     }
 
